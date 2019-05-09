@@ -1,0 +1,29 @@
+@using FoodGuide.Models;
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Hello friend!</title>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="~/css/styles.css">
+  </head>
+  <body>
+    <h1>Add a restaurant</h1>
+
+    <form action="/cuisine" method="post">
+      <label for="name">What is the name:</label>
+      <input id="name" name="name" type="text"><br>
+
+      <label for="cuisineId">Add the cuisine:</label>
+      @foreach (Cuisine cuisine in Model)
+      {
+        <input type="radio" name="@cuisine.Name" value="@cuisine.Id"> @cuisine.Name<br>
+      }
+    }
+
+      <button type="submit">Submit</button>
+    </form>
+
+  </body>
+</html>
