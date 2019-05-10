@@ -11,12 +11,12 @@
   <body>
     <h1>Add a restaurant</h1>
 
-    <form action="/cuisine" method="post">
+    <form action="/restaurant" method="post">
       <label for="name">What is the name:</label>
       <input id="name" name="name" type="text"><br>
 
       <label for="cuisineId">Add the cuisine:</label>
-      @foreach (Cuisine cuisine in Model)
+      @foreach (Cuisine cuisine in Model.Cuisine)
       {
         <input type="radio" name="@cuisine.Name" value="@cuisine.Id"> @cuisine.Name<br>
       }

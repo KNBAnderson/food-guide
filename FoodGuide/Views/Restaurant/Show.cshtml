@@ -1,0 +1,32 @@
+@* @using FoodGuide.Models;
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Food stuff</title>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="~/css/styles.css">
+  </head>
+  <body class="container">
+    <h1>Your restaurant list</h1>
+    @if (Model.Count == 0)
+        {
+          <p>You dont have any restaurants here :( !</p>
+        }
+    @if(Model.Count != 0)
+        {
+        @foreach (Restaurant restaurant in Model)
+        {
+          <div class="wordBox">
+            <a href='/country/@country.Code' class="answer">@country.CountryName is a country in @country.Continent. The capital is @country.Capital and gained independence in/from @country.Indepenence!</a>
+
+            <a href='/country/@country.Code/delete' class="smaller-text">Ok, now delete this one</a>
+          </div>
+        }
+        }
+
+
+    <a href="/country/new" class="new-form">Get the count for a new phrase!</a>
+  </body>
+</html> *@

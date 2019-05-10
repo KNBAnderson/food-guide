@@ -11,9 +11,10 @@ namespace FoodGuide.Models
     public int CuisineId {get; set;}
     public int Price {get; set;}
 
+
     //public string ImageURL {get; set;}
 
-    public Restaurant (string name, bool cuisineId, int price, int id = 0) {
+    public Restaurant (string name, int cuisineId, int price, int id = 0) {
       Name = name;
       CuisineId = cuisineId;
       Price = price;
@@ -33,7 +34,7 @@ namespace FoodGuide.Models
       {
         int id = rdr.GetInt32(0);
         string name = rdr.GetString(1);
-        bool cuisineId = rdr.GetBoolean(2);
+        int cuisineId = rdr.GetInt32(2);
         int price = rdr.GetInt32(3);
 
         Restaurant newRestaurant = new Restaurant(name, cuisineId, price, id);
@@ -46,6 +47,33 @@ namespace FoodGuide.Models
         conn.Dispose();
       }
       return allRestaurants;
+    }
+
+    public static List<Restaurant> FindCuisineList(int id)
+    {
+      List<Restaurant> cuisineRestaurants = new List<Restaurant> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand getCuisineList = conn.CreateCommand() as MySqlCommand;
+      getCuisineList.CommandText = @"SELECT * FROM restaurant WHERE cuisineId='" + id +"';";
+      MySqlDataReader rdr = getCuisineList.ExecuteReader() as MySqlDataReader;
+
+      while(rdr.Read())
+      {
+        int id1 = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        int cuisineId = rdr.GetInt32(2);
+        int price = rdr.GetInt32(3);
+
+        Restaurant newRestaurant = new Restaurant(name, cuisineId, price, id1);
+        cuisineRestaurants.Add(newRestaurant);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return cuisineRestaurants;
     }
 
     public static void ClearAll()
@@ -111,6 +139,7 @@ namespace FoodGuide.Models
       }
     }
 
+
     public static Restaurant Find(int id)
     {
       MySqlConnection conn = DB.Connection();
@@ -123,14 +152,16 @@ namespace FoodGuide.Models
       cmd.Parameters.Add(thisId);
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       string restaurantName = "";
-      bool restaurantCuisineId = false;
+      int restaurantCuisineId = 0;
       int restaurantId = 0;
+      int restaurantPrice = 0;
 
       while (rdr.Read())
       {
-        restaurantName = rdr.GetString(1);
-        restaurantCuisineId = rdr.GetBoolean(2);
         restaurantId = rdr.GetInt32(0);
+        restaurantName = rdr.GetString(1);
+        restaurantCuisineId = rdr.GetInt32(2);
+        restaurantPrice = rdr.GetInt32(3);
       }
 
       Restaurant foundRestaurant = new Restaurant(restaurantName, restaurantCuisineId, restaurantId);

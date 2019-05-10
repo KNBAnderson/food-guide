@@ -16,10 +16,10 @@ namespace FoodGuide.Controllers
     }
 
     // [HttpGet("/cuisine/{id}")]
-    // public ActionResult Show(int id)
+    // public ActionResult Index(int id)
     // {
-    //   List<Restaurant> allRestaurants = Restaurant.GetAll();
-    //   return View(allRestaurants);
+    //   List<Restaurant> allRestaurants = Restaurant.GetCuisineList(id);
+    //   return View("~/Restaurant/", allRestaurants);
     // }
 
     // [HttpPost("/cuisine/{id}/delete")]
@@ -30,3 +30,5 @@ namespace FoodGuide.Controllers
     // }
   }
 }
+
+//@"SELECT name FROM city WHERE cuisineId='" + id +"';";

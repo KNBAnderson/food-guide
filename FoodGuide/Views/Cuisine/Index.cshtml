@@ -21,7 +21,8 @@
     {
       @foreach (Cuisine cuisine in Model)
       {
-        <li><a href='/cuisine/@cuisine.Id'>@cuisine.Name</a></li>
+
+        <li><a href='/cuisine/@cuisine.Id/restaurant'>@cuisine.Name</a></li>
       }
     }
     </ul>

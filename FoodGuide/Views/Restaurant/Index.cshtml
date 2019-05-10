@@ -20,7 +20,7 @@
     {
       @foreach (Restaurant restaurant in Model)
       {
-        <li><a href='/cuisine/{id}/@restaurant.Id'>@restaurant.Name</a></li>
+        <li><a href='/cuisine/@restaurant.CuisineId/@restaurant.Id'>@restaurant.Name</a></li>
       }
     }
     </ul>

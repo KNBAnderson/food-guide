@@ -1,0 +1,52 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.7
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Generation Time: May 10, 2019 at 12:17 AM
+-- Server version: 5.6.38
+-- PHP Version: 7.2.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `food_guide`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `restaurant`
+--
+
+CREATE TABLE `restaurant` (
+  `Id` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `CuisineId` int(11) NOT NULL,
+  `Price` int(11) NOT NULL,
+  `Hours` int(11) NOT NULL,
+  `Location` varchar(255) NOT NULL,
+  `Rating` int(11) NOT NULL,
+  `BestDish` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `restaurant`
+--
+ALTER TABLE `restaurant`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `restaurant`
+--
+ALTER TABLE `restaurant`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
